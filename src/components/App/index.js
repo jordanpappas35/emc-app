@@ -4,7 +4,7 @@ import * as ROUTES from '../../constants/routes';
 
 import Navigation from '../Navigation';
 import LandingPage from '../Landing';
-import SignUpPage from '../SignUp';
+import RegisterView from '../Register';
 import SignInPage from '../SignIn';
 import PasswordForgetPage from '../PasswordForget';
 import HomePage from '../Home';
@@ -17,9 +17,8 @@ const App = () =>
     <Router>
       <div>
         <Navigation />
-
         <Route exact path={ROUTES.ROOT} component={LandingPage} />
-        <Route exact path={ROUTES.REGISTER} component={SignUpPage} />
+        <Route exact path={ROUTES.REGISTER} component={RegisterView} />
         <Route exact path={ROUTES.LOGIN} component={SignInPage} />
         <Route exact path={ROUTES.PASSWORD_FORGET} component={PasswordForgetPage} />
         <Route exact path={ROUTES.HOME} component={HomePage} />

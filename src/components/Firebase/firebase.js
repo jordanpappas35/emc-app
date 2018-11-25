@@ -1,4 +1,5 @@
 import app from 'firebase/app';
+import 'firebase/auth';
 
 const PROD_CONFIG = {
   apiKey: "AIzaSyC-_mOY5kTtbWa7MVQV8oCNFvvoAvjNXJo",
@@ -20,9 +21,30 @@ const DEV_CONFIG = {
 
 const CONFIG = process.env.NODE_ENV === 'production' ? PROD_CONFIG : DEV_CONFIG;
 
-class Firebase() {
+class Firebase {
   constructor() {
     app.initializeApp(CONFIG);
+    this.auth = app.auth();
+  }
+
+  registerUser(email, password) {
+    return this.auth.createUserWithEmailAndPassword(email, password);
+  }
+
+  logIn(email, password) {
+    return this.auth.signInWithEmailAndPassword(email, password);
+  }
+
+  logOut() {
+    return this.auth.signOut();
+  }
+
+  changePassword(password) {
+    return this.auth.currentUser.updatePassword(password);
+  }
+
+  resetPassword(email) {
+    return this.auth.sendPasswordResetEmail(email);
   }
 }
 
